@@ -1,5 +1,7 @@
 # dbt-specific
 dbt/jaffle_shop/logs/*
+dbt/jaffle_shop/.user.yml
+dbt/jaffle_shop/logs
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
