@@ -9,3 +9,5 @@ See [dbt's documentation](https://github.com/dbt-labs/jaffle_shop) for more info
 This project has been modified from the original to highlight some of the features of Cosmos. Namely:
 
 - tags have been added to the models
+
+making an insificant change to image to test dockerfile build functionality
