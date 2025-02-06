@@ -1,6 +1,19 @@
 duckdb_profile:
-  target: dev
   outputs:
     dev:
       path: /tmp/dbt.duckdb
       type: duckdb
+  target: dev
+jaffle_shop:
+  outputs:
+    dev:
+      account: "{{ env_var('DBT_ENV_SECRET_SF_ACCOUNT') }}"
+      database: "{{ env_var('DBT_ENV_SECRET_SF_DATABASE') }}"
+      password: "{{ env_var('DBT_ENV_SECRET_SF_PASS') }}"
+      role: ACCOUNTADMIN
+      schema: TEST
+      threads: 5
+      type: snowflake
+      user: "{{ env_var('DBT_ENV_SECRET_SF_USER') }}"
+      warehouse: COMPUTE_WH
+  target: dev
