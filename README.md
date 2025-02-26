@@ -1,34 +1,21 @@
-# Project Overview
+This repo is meant to act as a general template for starting up a data engineering project with technologies including:
 
-Apache Airflow is one of the most widely-used engines for orchestrating Extract, Transform, and Load (ETL) jobs, especially for transformations using [dbt](https://www.getdbt.com). dbt is a framework to create reliable transformations to produce high-quality data for businesses, usually in analytical databases like Snowflake and BigQuery.
+1. Astronomer
+2. GitHub
+3. Snowflake
+4. dbt
 
-This project showcases using dbt and Airflow together with [Cosmos](https://github.com/astronomer/astronomer-cosmos), allowing users to deploy dbt in production with Airflow best-practices.
+This can be expanded further to include technologies like Terraform and Google Cloud Platform.
 
-Astronomer is the best place to host Apache Airflow -- try it out with a free trial at [astronomer.io](https://www.astronomer.io/).
+Two important notes:
 
-# Learning Paths
+1. To develop locally, you will need a .env file to store credentials for dbt to use. As you can see the profiles.yml in the dbt folder uses environment variables for the connection to be made with Snowflake. However, a Snowflake connection is used in deployment on Astronomer, so that functions independently when the dbt dag is kicked off. Here is what the .env file should look like. These files should be double quoted and this .env file goes in the root directory of the project.
 
-To learn more about data engineering with Apache Airflow, dbt, and Cosmos, make a few changes to this project! For example, try one of the following:
+export DBT_ENV_SECRET_SF_PASS=<your sf password>
+export DBT_ENV_SECRET_SF_ACCOUNT=<your sf account url>
+export DBT_ENV_SECRET_SF_USER=<your sf user name>
+export DBT_ENV_SECRET_SF_DATABASE=<your sf database>
 
-1. Use Postgres, MySQL, Snowflake, or another production-ready database instead of DuckDB
-2. Change the Cosmos DbtDag to Cosmos DbtTaskGroups! For extra help, check out the [Cosmos examples of DbtTaskGroups](https://github.com/astronomer/astronomer-cosmos/blob/main/dev/dags/basic_cosmos_task_group.py)
+2. The Astronomer instance is also linked with this repo to automate building the Docker image that Astronomer uses to host our Airflow instance. It is set so that every time a PR is merged, the image will be updated and build again. 
 
-# Project Contents
-
-Your Astro project contains the following files and folders:
-
-- dags: This folder contains the Python files for your Airflow DAGs. This project includes one example DAG:
-  - `dbt_cosmos_dag.py`: This DAG sets up [Cosmos](https://github.com/astronomer/astronomer-cosmos), allowing files in the /dbt directory to transform into Airflow tasks and taskgroups.
-- dbt/jaffle_shop: This folder contains the dbt project [jaffle_shop](https://github.com/dbt-labs/jaffle_shop_duckdb), a fictional ecommerce store. Use this as a starting point to learn how dbt and Airflow work together!
-- Dockerfile: This file contains a versioned Astro Runtime Docker image that provides a differentiated Airflow experience. If you want to execute other commands or overrides at runtime, specify them here.
-- include: This folder contains any additional files that you want to include as part of your project. In this example, constants.py includes configuration for your Cosmos project.
-- packages.txt: Install OS-level packages needed for your project by adding them to this file. It is empty by default.
-- requirements.txt: Install Python packages needed for your project by adding them to this file. In this project, we pin the Cosmos version.
-- plugins: Add custom or community plugins for your project to this file. It is empty by default.
-- airflow_settings.yaml: Use this local-only file to specify Airflow Connections, Variables, and Pools instead of entering them in the Airflow UI as you develop DAGs in this project.
-
-# Deploying to Production
-
-### ❗Warning❗
-
-This template used DuckDB, an in-memory database, for running dbt transformations. While this is great to learn Airflow, your data is not guaranteed to persist between executions! For production applications, use a _persistent database_ instead (consider DuckDB's hosted option MotherDuck or another database like Postgres, MySQL, or Snowflake).
+Will add more to this as I build out project...
