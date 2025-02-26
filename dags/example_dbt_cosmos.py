@@ -1,12 +1,12 @@
-# Airflow DAG for running dbt on the jaffle_shop project using the duckdb adapter.
+# Airflow DAG for running dbt on the dbt project using the duckdb adapter.
 from datetime import datetime
 
 from cosmos import DbtDag, ProjectConfig, ProfileConfig
 from cosmos.profiles import SnowflakeUserPasswordProfileMapping
-from include.constants import jaffle_shop_path, venv_execution_config
+from include.constants import dbt_project_path, venv_execution_config
 
 profile_config = ProfileConfig(
-    profile_name="jaffle_shop",
+    profile_name="default",
     target_name="dev",
     profile_mapping=SnowflakeUserPasswordProfileMapping(
         conn_id="snowflake_conn",
@@ -19,7 +19,7 @@ profile_config = ProfileConfig(
 
 dbt_cosmos_dag = DbtDag(
     # dbt/cosmos-specific parameters
-    project_config=ProjectConfig(jaffle_shop_path),
+    project_config=ProjectConfig(dbt_project_path),
     profile_config=profile_config,
     execution_config=venv_execution_config,
     # normal dag parameters
