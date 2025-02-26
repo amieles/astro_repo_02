@@ -9,7 +9,7 @@ This can be expanded further to include technologies like Terraform and Google C
 
 Two important notes:
 
-1. To develop locally, you will need a .env file to store credentials for dbt to use. As you can see the profiles.yml in the dbt folder uses environment variables for the connection to be made with Snowflake. However, a Snowflake connection is used in deployment on Astronomer, so that functions independently when the dbt dag is kicked off. Here is what the .env file should look like. These files should be double quoted and this .env file goes in the root directory of the project.
+1. To develop locally, you will need a .env file to store credentials for dbt to use. As you can see the profiles.yml in the dbt folder uses environment variables for the connection to be made with Snowflake. However, a Snowflake connection is used in deployment on Astronomer, so that functions independently when the dbt dag is kicked off. Here is what the .env file should look like. Put this in the root directory of the repo an then all subsequent dbt commands should use: uv run --env-file ../.env dbt <command>
 
 export DBT_ENV_SECRET_SF_PASS=<your sf password>
 export DBT_ENV_SECRET_SF_ACCOUNT=<your sf account url>
