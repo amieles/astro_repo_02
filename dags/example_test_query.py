@@ -23,7 +23,7 @@ default_args = {
 def call_snowflake_scripts():
     opr_call_script = SQLExecuteQueryOperator(
         task_id="call_test1",
-        snowflake_conn_id="snowflake_conn",
+        conn_id="snowflake_conn",
         sql="test_query.sql"
     )
     opr_call_script
