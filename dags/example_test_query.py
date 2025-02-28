@@ -24,7 +24,8 @@ def call_snowflake_scripts():
     opr_call_script = SQLExecuteQueryOperator(
         task_id="call_test1",
         conn_id="snowflake_conn",
-        sql="test_query.sql"
+        sql="test_query.sql",
+        show_return_value_in_logs=True
     )
     opr_call_script
 
