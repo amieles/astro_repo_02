@@ -1,6 +1,6 @@
 from airflow.decorators import dag
 from datetime import datetime, timedelta
-from airflow.providers.snowflake.operators.snowflake import SnowflakeQueryOperator
+from airflow.providers.snowflake.operators.snowflake import SnowflakeSqlApiOperator
 
 default_args = {
     "owner": "airflow",
@@ -20,7 +20,7 @@ default_args = {
     catchup=False,
 )
 def call_snowflake_scripts():
-    opr_call_script = SnowflakeQueryOperator(
+    opr_call_script = SnowflakeSqlApiOperator(
         task_id="call_test1",
         snowflake_conn_id="snowflake_conn",
         sql="test_query.sql"
