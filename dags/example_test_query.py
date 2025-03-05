@@ -25,7 +25,8 @@ def call_snowflake_scripts():
         task_id="call_test1",
         conn_id="snowflake_conn",
         sql="test_query.sql",
-        show_return_value_in_logs=True
+        show_return_value_in_logs=True,
+        params={"limit_value": 10},  # Parameterizing the limit
     )
     opr_call_script
 

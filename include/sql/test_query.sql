@@ -1,2 +1,2 @@
 select * from keybr.keybr.lessons
-limit 10;
+limit {{ params.limit_value }};;
