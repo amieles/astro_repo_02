@@ -2,9 +2,9 @@ default:
   outputs:
     dev:
       account: "{{ env_var('DBT_ENV_SECRET_SF_ACCOUNT') }}"
-      database: "{{ env_var('DBT_ENV_SF_DATABASE') }}"
+      database: "{{ env_var('DBT_ENV_SECRET_SF_DATABASE') }}"
       password: "{{ env_var('DBT_ENV_SECRET_SF_PASS') }}"
-      role: ACCOUNTADMIN
+      role: ASTRO_ROLE
       schema: TEST
       threads: 5
       type: snowflake
