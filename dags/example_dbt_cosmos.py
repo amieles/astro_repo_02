@@ -11,8 +11,8 @@ profile_config = ProfileConfig(
     profile_mapping=SnowflakeUserPasswordProfileMapping(
         conn_id="snowflake_conn",
         profile_args={
-            # "database": "my_snowflake_database",
-            # "schema": "my_snowflake_schema",
+             "database": "ASTRO_DBT_DEMO",
+             "schema": "TEST",
         },
     ),
 )
