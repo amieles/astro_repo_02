@@ -1,7 +1,6 @@
 from airflow.decorators import dag
 from datetime import datetime, timedelta
 from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
-from airflow.providers.snowflake.hooks.snowflake import SnowflakeHook
 
 default_args = {
     "owner": "airflow",
@@ -11,6 +10,8 @@ default_args = {
     "retries": 1,
     "retry_delay": timedelta(seconds=5),
 }
+
+
 @dag(
     "example_test_query",
     start_date=datetime(2020, 6, 1),
@@ -30,10 +31,5 @@ def call_snowflake_scripts():
     )
     opr_call_script
 
+
 call_snowflake_scripts()
-
-
-
-
-
-
