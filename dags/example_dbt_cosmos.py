@@ -27,8 +27,4 @@ dbt_cosmos_dag = DbtDag(
     start_date=datetime(2023, 1, 1),
     catchup=False,
     dag_id="example_dbt_cosmos",
-    # only allow one concurrent run of this DAG, prevents parallel DuckDB calls
-    max_active_runs=1,
-    concurrency=1,  # only allow a single task execution at a time, prevents parallel DuckDB calls
-    is_paused_upon_creation=False,  # start running the DAG as soon as its created
 )
