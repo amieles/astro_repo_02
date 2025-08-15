@@ -11,8 +11,8 @@ profile_config = ProfileConfig(
     profile_mapping=SnowflakeUserPasswordProfileMapping(
         conn_id="snowflake_conn",
         profile_args={
-             "database": "ASTRO_DBT_DEMO",
-             "schema": "TEST",
+            "database": "ASTRO_DBT_DEMO",
+            "schema": "TEST",
         },
     ),
 )
@@ -23,11 +23,12 @@ dbt_cosmos_dag = DbtDag(
     profile_config=profile_config,
     execution_config=venv_execution_config,
     # normal dag parameters
-    schedule_interval="@daily",
+    schedule="@daily",
     start_date=datetime(2023, 1, 1),
     catchup=False,
     dag_id="example_dbt_cosmos",
-    max_active_runs=1,  # only allow one concurrent run of this DAG, prevents parallel DuckDB calls
-    concurrency=1, # only allow a single task execution at a time, prevents parallel DuckDB calls
-    is_paused_upon_creation=False, # start running the DAG as soon as its created
+    # only allow one concurrent run of this DAG, prevents parallel DuckDB calls
+    max_active_runs=1,
+    concurrency=1,  # only allow a single task execution at a time, prevents parallel DuckDB calls
+    is_paused_upon_creation=False,  # start running the DAG as soon as its created
 )
