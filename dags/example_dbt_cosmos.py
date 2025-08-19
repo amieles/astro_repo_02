@@ -2,13 +2,13 @@
 from datetime import datetime
 
 from cosmos import DbtDag, ProjectConfig, ProfileConfig
-from cosmos.profiles import SnowflakeUserPasswordProfileMapping
+from cosmos.profiles import SnowflakeEncryptedPrivateKeyPemProfileMapping
 from include.constants import dbt_project_path, venv_execution_config
 
 profile_config = ProfileConfig(
     profile_name="default",
     target_name="dev",
-    profile_mapping=SnowflakeUserPasswordProfileMapping(
+    profile_mapping=SnowflakeEncryptedPrivateKeyPemProfileMapping(
         conn_id="snowflake_conn",
         profile_args={
             "database": "ASTRO_DBT_DEMO",
