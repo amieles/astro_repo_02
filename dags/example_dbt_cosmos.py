@@ -13,6 +13,7 @@ profile_config = ProfileConfig(
         profile_args={
             "database": "ASTRO_DBT_DEMO",
             "schema": "TEST",
+            "warehouse": "COMPUTE_WH",
         },
     ),
 )
